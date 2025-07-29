@@ -1,13 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 
-const AddJobForm = () => {
+const AddJobForm = ({sendJobData}) => {
+
+    const [formData, setFormData] = useState({ company:"", position: "", status: ""});
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert('click submit');
+        sendJobData(formData); // send to parent
+    }
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value})
+        console.log(formData);
+    }
     return (
         <div>
             Add Job Application
-            <input type="text" name="company" placeholder="Company"/>
-            <input type="text" name="position" placeholder="Position"/>
-            <input type="text" name="status" placeholder="Status"/>
-            <button className="bg-blue">Add</button>
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="company" value={formData.company} placeholder="Company" onChange={handleChange}/>
+                <input type="text" name="position" value={formData.position} placeholder="Position" onChange={handleChange}/>
+                <input type="text" name="status"  value={formData.status} placeholder="Status" onChange={handleChange}/>
+                <input type="submit" value="Submit" className="bg-blue"/>
+            </form>
+
         </div>
     )
 }

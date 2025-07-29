@@ -7,10 +7,13 @@ import AddJobForm from './components/AddJobForm'
 function App() {
   const [count, setCount] = useState(0)
 
+  const addJob = (job) => {
+    console.log('job', job);
+  }
   return (
     <>
       <div>
-      <AddJobForm/>
+      <AddJobForm sendJobData={addJob}/>
       <JobList/>
       </div>
     </>
