@@ -6,13 +6,11 @@ const AddJobForm = ({sendJobData}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert('click submit');
         sendJobData(formData); // send to parent
     }
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value})
-        console.log(formData);
     }
     return (
         <div>

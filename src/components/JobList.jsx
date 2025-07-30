@@ -8,24 +8,27 @@ import '../assets/JobList.css'
 // Register the module you need (or AllCommunityModules if you want everything)
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
-const JobList = () => {
-  const [rowData, setRowData] = useState([
-    { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-    { make: "Ford", model: "F-Series", price: 33850, electric: false },
-    { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-  ]);
+const JobList = ({jobListingsRecords}) => {
+
+  const listingsRowData = jobListingsRecords.map(job => {
+    return {
+      company: job.company,
+      position: job.position,
+      status: job.status
+    }
+  });
+
 
   const [colDefs] = useState([
-    { field: "make" },
-    { field: "model" },
-    { field: "price" },
-    { field: "electric" },
+    { field: "company" },
+    { field: "position" },
+    { field: "status" },
   ]);
 
   return (
     <div style={{ height: 500, width: '100%' }} className="joblist ag-theme-quartz">
       <AgGridReact
-        rowData={rowData}
+        rowData={listingsRowData}
         columnDefs={colDefs}
         animateRows={true}
       />
