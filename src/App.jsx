@@ -13,7 +13,6 @@ function App() {
     //save listings in array
     setJobListings(prevJobs => [...prevJobs, job]);
     console.log('job listings:', jobListings);
-
   }
 
   // send jobs to jobList component
@@ -21,7 +20,7 @@ function App() {
     <>
       <div>
       <AddJobForm sendJobData={addJob}/>
-      <FilterBar/>
+      <FilterBar jobListingsRecords={jobListings}/>
       <JobList jobListingsRecords={jobListings}/>
       </div>
     </>
