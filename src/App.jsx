@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import JobList from './components/JobList'
 import AddJobForm from './components/AddJobForm'
+import FilterBar from './components/FilterBar'
+
 function App() {
   const [jobListings, setJobListings] = useState([]);
 
@@ -19,6 +21,7 @@ function App() {
     <>
       <div>
       <AddJobForm sendJobData={addJob}/>
+      <FilterBar/>
       <JobList jobListingsRecords={jobListings}/>
       </div>
     </>
