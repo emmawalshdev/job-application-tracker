@@ -8,20 +8,32 @@ import FilterBar from './components/FilterBar'
 
 function App() {
   const [jobListings, setJobListings] = useState([]);
+  const [filters, setFilters] = useState({
+    company: '',
+    position: ''
+  });
 
   const addJob = (job) => {
     //save listings in array
     setJobListings(prevJobs => [...prevJobs, job]);
-    console.log('job listings:', jobListings);
   }
 
+  const filteredJobs = jobListings.filter(job => {
+    return (
+      (filters.company === '' || job.company == filters.company) &&
+      (filters.position === '' || job.position == filters.position)
+    );
+  });
+
+  console.log(filteredJobs)
+;
   // send jobs to jobList component
   return (
     <>
       <div>
       <AddJobForm sendJobData={addJob}/>
-      <FilterBar jobListingsRecords={jobListings}/>
-      <JobList jobListingsRecords={jobListings}/>
+      <FilterBar jobListingsRecords={filteredJobs} filters={filters}/>
+      <JobList jobListingsRecords={jobListings} filters={filters} setFilters={setFilters}/>
       </div>
     </>
   )
