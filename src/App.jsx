@@ -18,6 +18,12 @@ function App() {
     setJobListings(prevJobs => [...prevJobs, job]);
   }
 
+  const setSelectedFilters = (filters) => {
+    //setSelectedFilters(filters);
+    console.log(filters, 'filters');
+    return;
+  }
+
   const filteredJobs = jobListings.filter(job => {
     return (
       (filters.company === '' || job.company == filters.company) &&
@@ -25,14 +31,13 @@ function App() {
     );
   });
 
-  console.log(filteredJobs)
 ;
   // send jobs to jobList component
   return (
     <>
       <div>
       <AddJobForm sendJobData={addJob}/>
-      <FilterBar jobListingsRecords={filteredJobs} filters={filters}/>
+      <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
       <JobList jobListingsRecords={jobListings} filters={filters} setFilters={setFilters}/>
       </div>
     </>
