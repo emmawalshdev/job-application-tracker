@@ -6,22 +6,26 @@ const FilterBar = ({jobListingsRecords, filters, setFilters}) => {
     const companies = [...new Set(jobListingsRecords.map(job => job.company))];
     const positions = [...new Set(jobListingsRecords.map(job => job.position))];
 
-    const [selectedFilterVals, setSelectedFilterVals] = useState({ company:"", position:"", status:""});
+    const [selectedFilterVals, setSelectedFilterVals] = useState({
+        company: "",
+        position: "",
+    });
 
-    function handleCompanyChange(e){
-        setSelectedFilterVals({'company': e.target.value});
-        setFilters(selectedFilterVals);
-        return;
+    function handleFilterChange(field, value){
+        const updatedFilters = {
+            ...selectedFilterVals,
+            [field]: value
+        }
+
+        setSelectedFilterVals(updatedFilters);
+        console.log(updatedFilters);
     }
 
-    function handlePositionChange(e){
-        return;
-    }
 return (
     <>
         <div>Filter bar - drop down & select</div>
         <div>Compnany</div>
-        <select onChange={handleCompanyChange} value={filters.company} data-cat="company">
+        <select onChange={(e) => handleFilterChange("company", e.target.value)} value={filters.company} data-cat="company">
             <option value="">All</option>
             {companies.map((company,index) => {
                 return (
@@ -31,7 +35,7 @@ return (
             })}
         </select>
         <div>Position</div>
-        <select onChange={handlePositionChange} value={filters.position}>
+        <select onChange={(e) => handleFilterChange("position", e.target.value)} value={filters.position}>
             <option value="">All</option>
             {positions.map((position, index) => {
                     return (
