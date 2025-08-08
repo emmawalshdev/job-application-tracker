@@ -27,33 +27,22 @@ const FilterBar = ({jobListingsRecords, filters, setFilters}) => {
     });
 
     function handleFilterChange(field, value){
-        console.log("value",value);
         const updatedFilters = {
             ...selectedFilterVals,
             [field]: value
         }
 
         setSelectedFilterVals(updatedFilters);
-        console.log(updatedFilters);
+        console.log('called', updatedFilters);
     }
 
-    function handleFilterChange(field, value){
-        console.log("value",value);
-        const updatedFilters = {
-            ...selectedFilterVals,
-            [field]: value
-        }
-
-        setSelectedFilterVals(updatedFilters);
-        console.log(updatedFilters);
-    }
 return (
     <>
         <Select
             closeMenuOnSelect={false}
             components={animatedComponents}
             isMulti
-            onChange={(selectedOption) => handleFilterChange("company", selectedOption.map(opt.value))}
+            onChange={(selectedOption) => handleFilterChange("company", selectedOption.map(option => option.value))}
             options={optionsCompany} 
             placeholder={<span>Company</span>}
         />
@@ -61,7 +50,7 @@ return (
             closeMenuOnSelect={false}
             components={animatedComponents}
             isMulti
-            onChange={(selectedOption) => handleFilterChange("company", selectedOption.map(opt.value))}
+            onChange={(selectedOption) => handleFilterChange("position", selectedOption.map(option => option.value))}
             options={optionsPosition} 
             placeholder={<span>Position</span>}
         />
