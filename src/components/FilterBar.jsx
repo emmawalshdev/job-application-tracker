@@ -32,17 +32,12 @@ const FilterBar = ({jobListingsRecords, filters, setFilters}) => {
 
 return (
     <>
-        <div>Filter bar - drop down & select</div>
-        <div>Compnany</div>
         <Select
             closeMenuOnSelect={false}
             components={animatedComponents}
             isMulti
             options={options} 
         />
-
-        <div>sort by</div>
-
     </>
 )
 }
