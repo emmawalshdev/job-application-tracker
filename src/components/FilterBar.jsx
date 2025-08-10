@@ -39,7 +39,7 @@ const FilterBar = ({jobListingsRecords, filters, setFilters}) => {
             [field]: value
         }
 
-        setSelectedFilterVals(updatedFilters);
+        setFilters(updatedFilters);
         console.log('called', updatedFilters);
     }
 

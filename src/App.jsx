@@ -22,7 +22,6 @@ function App() {
   const setSelectedFilters = (filters) => {
     //setSelectedFilters(filters);
     console.log(filters, 'filters');
-    return;
   }
 
   const filteredJobs = jobListings.filter(job => {
