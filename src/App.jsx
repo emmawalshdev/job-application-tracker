@@ -10,10 +10,11 @@ function App() {
   const [jobListings, setJobListings] = useState([]);
   
   const [filters, setFilters] = useState({
-    company: '',
-    position: '',
-    status: ''
+    company: [],
+    position: [],
+    status: []
   });
+  
 
   const addJob = (job) => {
     //save listings in array
@@ -28,20 +29,24 @@ function App() {
 
   const filteredJobs = jobListings.filter(job => {
     return (
-      (filters.company === '' || job.company == filters.company) &&
-      (filters.position === '' || job.position == filters.position) &&
-      (filters.status === '' || job.status == filters.status)
+      (filters.company.length === 0 || filters.company.includes(job.company)) &&
+      (filters.position.length === 0 || filters.position.includes(job.position)) &&
+      (filters.status.length === 0 || filters.status.includes(job.status))
     );
   });
+  
 
-;
+  console.log('filters', filters);
+
+  console.log('filtered jobs', filteredJobs);
+
   // send jobs to jobList component
   return (
     <>
       <div>
       <AddJobForm sendJobData={addJob}/>
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
-      <JobList jobListingsRecords={jobListings} filters={filters} setFilters={setFilters}/>
+      <JobList jobListingsRecords={filteredJobs} />
       </div>
     </>
   )
