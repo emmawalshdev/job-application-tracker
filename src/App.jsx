@@ -8,6 +8,7 @@ import FilterBar from './components/FilterBar'
 
 function App() {
   const [jobListings, setJobListings] = useState([]);
+  
   const [filters, setFilters] = useState({
     company: '',
     position: '',
@@ -22,6 +23,7 @@ function App() {
   const setSelectedFilters = (filters) => {
     //setSelectedFilters(filters);
     console.log(filters, 'filters');
+    setFilters(filters);
   }
 
   const filteredJobs = jobListings.filter(job => {

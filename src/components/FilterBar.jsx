@@ -26,16 +26,9 @@ const FilterBar = ({jobListingsRecords, filters, setFilters}) => {
         label: status
     }));
 
-    console.log(optionsCompany, optionsPosition);
-
-    const [selectedFilterVals, setSelectedFilterVals] = useState({
-        company: "",
-        position: "",
-    });
-
     function handleFilterChange(field, value){
         const updatedFilters = {
-            ...selectedFilterVals,
+            ...filters,
             [field]: value
         }
 
