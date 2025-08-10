@@ -7,6 +7,8 @@ const FilterBar = ({jobListingsRecords, filters, setFilters}) => {
 
     const companies = [...new Set(jobListingsRecords.map(job => job.company))];
     const positions = [...new Set(jobListingsRecords.map(job => job.position))];
+    const statuses = [...new Set(jobListingsRecords.map(job => job.status))];
+
     const animatedComponents = makeAnimated();
 
     const optionsCompany = companies.map(company =>({
@@ -17,6 +19,11 @@ const FilterBar = ({jobListingsRecords, filters, setFilters}) => {
     const optionsPosition = positions.map(position =>({
         value: position,
         label: position
+    }));
+
+    const optionsStatus = statuses.map(status =>({
+        value: status,
+        label: status
     }));
 
     console.log(optionsCompany, optionsPosition);
@@ -53,6 +60,14 @@ return (
             onChange={(selectedOption) => handleFilterChange("position", selectedOption.map(option => option.value))}
             options={optionsPosition} 
             placeholder={<span>Position</span>}
+        />
+        <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            onChange={(selectedOption) => handleFilterChange("status", selectedOption.map(option => option.value))}
+            options={optionsStatus} 
+            placeholder={<span>Status</span>}
         />
     </>
 )

@@ -10,7 +10,8 @@ function App() {
   const [jobListings, setJobListings] = useState([]);
   const [filters, setFilters] = useState({
     company: '',
-    position: ''
+    position: '',
+    status: ''
   });
 
   const addJob = (job) => {
@@ -27,7 +28,8 @@ function App() {
   const filteredJobs = jobListings.filter(job => {
     return (
       (filters.company === '' || job.company == filters.company) &&
-      (filters.position === '' || job.position == filters.position)
+      (filters.position === '' || job.position == filters.position) &&
+      (filters.status === '' || job.status == filters.status)
     );
   });
 
