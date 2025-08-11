@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -7,14 +7,22 @@ import AddJobForm from './components/AddJobForm'
 import FilterBar from './components/FilterBar'
 
 function App() {
-  const [jobListings, setJobListings] = useState([]);
   
+  const [jobListings, setJobListings] = useState(() => {
+    const savedJobs = localStorage.getItem('jobListings');
+    return savedJobs ? JSON.parse(savedJobs) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('jobListings', JSON.stringify(jobListings))
+  }, [jobListings]);
+
   const [filters, setFilters] = useState({
     company: [],
     position: [],
     status: []
   });
-  
+
 
   const addJob = (job) => {
     //save listings in array
@@ -35,12 +43,10 @@ function App() {
     );
   });
   
-
   console.log('filters', filters);
-
   console.log('filtered jobs', filteredJobs);
 
-  // send jobs to jobList component
+
   return (
     <>
       <div>
