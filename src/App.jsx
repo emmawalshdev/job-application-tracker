@@ -13,6 +13,10 @@ function App() {
     return savedJobs ? JSON.parse(savedJobs) : [];
   });
 
+  const handleDeleteJob = (rowIndex) => {
+    setJobListings(prev => prev.filter((_, index) => index !== rowIndex));
+  };
+
   useEffect(() => {
     localStorage.setItem('jobListings', JSON.stringify(jobListings))
   }, [jobListings]);
@@ -52,7 +56,7 @@ function App() {
       <div>
       <AddJobForm sendJobData={addJob}/>
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
-      <JobList jobListingsRecords={filteredJobs} />
+      <JobList jobListingsRecords={jobListings} onDelete={handleDeleteJob} />
       </div>
     </>
   )
