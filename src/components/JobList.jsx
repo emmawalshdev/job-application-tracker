@@ -19,7 +19,6 @@ const JobList = ({ jobListingsRecords, onDelete }) => {
   });
 
   const deleteCellRenderer = (params) => {
-    console.log(params);
     return (
       <button onClick={() => onDelete(params.node.rowIndex)}>
         Delete
@@ -27,17 +26,64 @@ const JobList = ({ jobListingsRecords, onDelete }) => {
     );
   };
 
+  const resultCellRenderer = (params) => {
+
+    const [expandedRows, setExpandedRows] = useState({});
+    const rowIndex = params.node.rowIndex;
+
+    const isExpanded = !!expandedRows[rowIndex];
+
+    const toggleExpand = () => {
+      setExpandedRows(prev => ({
+        ...prev,
+        [rowIndex]: !prev[rowIndex]
+      }));
+    }
+
+    return (
+      <>
+      {!isExpanded && (
+      <div className='result-no-response'>
+        <span>No response</span>
+        <button onClick={toggleExpand}>
+          Update
+        </button>
+      </div>
+      )}
+
+      {isExpanded && (
+        <div className='result-update'>
+        <button onClick={() => alert("clicked")}>
+            Interview
+        </button>
+        <button onClick={() => alert("clicked")}>
+            offer
+        </button>
+      </div>
+      )}
+
+      </>
+    )
+  }
+
   const [colDefs] = useState([
     { field: "company" },
     { field: "position" },
     { field: "status" },
+    { 
+      headerName: "Result",
+      cellRenderer: resultCellRenderer,
+      maxWidth: 120,
+      suppressMenu: true,
+      suppressSorting: true
+    },
     { 
       headerName: "Actions",
       cellRenderer: deleteCellRenderer,
       maxWidth: 120,
       suppressMenu: true,
       suppressSorting: true
-    }
+    },
   ]);
 
   return (
