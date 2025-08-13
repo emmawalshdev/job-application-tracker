@@ -9,6 +9,8 @@ ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 const JobList = ({ jobListingsRecords, onDelete }) => {
 
+  const [expandedRows, setExpandedRows] = useState({});
+
   const listingsRowData = jobListingsRecords.map((job, index) => {
     return {
       id: index,
@@ -26,57 +28,47 @@ const JobList = ({ jobListingsRecords, onDelete }) => {
     );
   };
 
-  const resultCellRenderer = (params) => {
-
-    const [expandedRows, setExpandedRows] = useState({});
-    const rowIndex = params.node.rowIndex;
-
+  const toggleExpand = (rowIndex) => {
+    setExpandedRows(prev => ({
+      ...prev,
+      [rowIndex]: !prev[rowIndex]
+    }));
+  };
+  
+  const ResultCell = ({ rowIndex }) => {
     const isExpanded = !!expandedRows[rowIndex];
-
-    const toggleExpand = () => {
-      setExpandedRows(prev => ({
-        ...prev,
-        [rowIndex]: !prev[rowIndex]
-      }));
-    }
-
+  
     return (
-      <>
-      {!isExpanded && (
-      <div className='result-no-response'>
-        <span>No response</span>
-        <button onClick={toggleExpand}>
-          Update
-        </button>
+      <div style={{ background: 'lightyellow', padding: '4px' }}>
+        <p>hidge</p>
+        {!isExpanded && (
+          <div className='result-no-response'>
+            <span>No response</span>
+            <button onClick={() => toggleExpand(rowIndex)}>
+              Update
+            </button>
+          </div>
+        )}
+  
+        {isExpanded && (
+          <div className='result-update'>
+            <button onClick={() => alert("Interview clicked")}>
+                Interview
+            </button>
+            <button onClick={() => alert("Offer clicked")}>
+                Offer
+            </button>
+          </div>
+        )}
       </div>
-      )}
-
-      {isExpanded && (
-        <div className='result-update'>
-        <button onClick={() => alert("clicked")}>
-            Interview
-        </button>
-        <button onClick={() => alert("clicked")}>
-            offer
-        </button>
-      </div>
-      )}
-
-      </>
     )
   }
+  
 
   const [colDefs] = useState([
     { field: "company" },
     { field: "position" },
     { field: "status" },
-    { 
-      headerName: "Result",
-      cellRenderer: resultCellRenderer,
-      maxWidth: 120,
-      suppressMenu: true,
-      suppressSorting: true
-    },
     { 
       headerName: "Actions",
       cellRenderer: deleteCellRenderer,
@@ -84,6 +76,13 @@ const JobList = ({ jobListingsRecords, onDelete }) => {
       suppressMenu: true,
       suppressSorting: true
     },
+    {
+      headerName: "Result",
+      cellRendererFramework: (params) => <ResultCell rowIndex={params.node.rowIndex} />,
+      maxWidth: 120,
+      suppressMenu: true,
+      suppressSorting: true
+    }
   ]);
 
   return (
