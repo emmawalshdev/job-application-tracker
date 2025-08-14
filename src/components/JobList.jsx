@@ -10,6 +10,7 @@ ModuleRegistry.registerModules([ClientSideRowModelModule]);
 const JobList = ({ jobListingsRecords, onDelete }) => {
 
   const [expandedRows, setExpandedRows] = useState({});
+  const [editJobList, setJobList] = useState({});
 
   const listingsRowData = jobListingsRecords.map((job, index) => {
     return {
@@ -22,9 +23,14 @@ const JobList = ({ jobListingsRecords, onDelete }) => {
 
   const deleteCellRenderer = (params) => {
     return (
-      <button onClick={() => onDelete(params.node.rowIndex)}>
-        Delete
+      <>
+      <button onClick={() => alert('test')}>
+        E
       </button>
+      <button onClick={() => onDelete(params.node.rowIndex)}>
+        D
+      </button>
+      </>
     );
   };
 

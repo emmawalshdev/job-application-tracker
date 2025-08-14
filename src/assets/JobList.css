@@ -1,3 +1,9 @@
 .joblist {
     color: black;
+
+    button {
+        background-color: red;
+        max-width: 30px;
+        display: inline;
+    }
 }
