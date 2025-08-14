@@ -65,7 +65,7 @@ function App() {
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
       <JobList setEditFormShow={setEditForm} jobListingsRecords={jobListings} onDelete={handleDeleteJob} />
       {showEditJobForm &&
-        <EditJobForm sendJobData={addJob}></EditJobForm>
+        <EditJobForm sendJobData={addJob} setEditFormShow={setEditForm}></EditJobForm>
       }
       </div>
     </>

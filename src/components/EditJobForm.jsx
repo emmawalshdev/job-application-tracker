@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const EditJobForm = ({sendJobData}) => {
+const EditJobForm = ({sendJobData, setEditFormShow}) => {
 
     const [formData, setFormData] = useState({ company:"", position: "", status: ""});
 
@@ -21,7 +21,7 @@ const EditJobForm = ({sendJobData}) => {
                 <input type="text" name="status"  value={formData.status} placeholder="Status" onChange={handleChange}/>
                 <input type="submit" value="Update" className="bg-blue"/>
             </form>
-
+            <button onClick={() => setEditFormShow(false)}>close</button>
         </div>
     )
 }
