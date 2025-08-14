@@ -5,6 +5,8 @@ import './App.css'
 import JobList from './components/JobList'
 import AddJobForm from './components/AddJobForm'
 import FilterBar from './components/FilterBar'
+import Header from './components/Header'
+import EditJobForm from './components/EditJobForm'
 
 function App() {
   
@@ -54,9 +56,11 @@ function App() {
   return (
     <>
       <div>
+      <Header></Header>
       <AddJobForm sendJobData={addJob}/>
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
       <JobList jobListingsRecords={jobListings} onDelete={handleDeleteJob} />
+      <EditJobForm></EditJobForm>
       </div>
     </>
   )
