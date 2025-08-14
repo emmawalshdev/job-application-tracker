@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const EditJobForm = ({sendJobData, setEditFormShow}) => {
+const EditJobForm = ({sendJobData, setEditFormShow, editRowId}) => {
 
     const [formData, setFormData] = useState({ company:"", position: "", status: ""});
 
@@ -14,7 +14,7 @@ const EditJobForm = ({sendJobData, setEditFormShow}) => {
     }
     return (
         <div>
-            Edit Job
+            Edit Job {editRowId} id
             <form onSubmit={handleSubmit}>
                 <input type="text" name="company" value={formData.company} placeholder="Company" onChange={handleChange}/>
                 <input type="text" name="position" value={formData.position} placeholder="Position" onChange={handleChange}/>

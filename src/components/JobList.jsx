@@ -7,7 +7,7 @@ import '../assets/JobList.css'
 // Register the module you need (or AllCommunityModules if you want everything)
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
-const JobList = ({ jobListingsRecords, onDelete, setEditFormShow }) => {
+const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }) => {
 
   const [expandedRows, setExpandedRows] = useState({});
   const [editJobList, setJobList] = useState(false);
@@ -24,8 +24,12 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow }) => {
   const deleteCellRenderer = (params) => {
     return (
       <>
-      <button onClick={() => setEditFormShow(true)}>
-        E
+      <button onClick={() => {
+        setEditFormShow(true); 
+        setEditRowId(params.node.rowIndex);
+        console.log('params.node');
+      }}>
+        {params.node.rowId}
       </button>
       <button onClick={() => onDelete(params.node.rowIndex)}>
         D

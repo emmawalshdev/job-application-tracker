@@ -15,7 +15,9 @@ function App() {
     return savedJobs ? JSON.parse(savedJobs) : [];
   });
 
+
   const [showEditJobForm, setShowEditForm] = useState();
+  const [editRowId, setEditRowId] = useState();
 
   const handleDeleteJob = (rowIndex) => {
     setJobListings(prev => prev.filter((_, index) => index !== rowIndex));
@@ -37,11 +39,17 @@ function App() {
     setJobListings(prevJobs => [...prevJobs, job]);
   }
 
+  const updateJob = (job) => {
+    //save listings in array
+    console.log('job', job);
+    setJobListings(prevJobs => [...prevJobs, job]);
+  }
+
   const setSelectedFilters = (filters) => {
     setFilters(filters);
   }
 
-  const setEditForm = (toShow) => {
+  const setEditForm = (toShow, rowId) => {
     setShowEditForm(toShow);
   }
 
@@ -63,9 +71,9 @@ function App() {
       <Header></Header>
       <AddJobForm sendJobData={addJob}/>
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
-      <JobList setEditFormShow={setEditForm} jobListingsRecords={jobListings} onDelete={handleDeleteJob} />
+      <JobList setEditFormShow={setEditForm} setEditRowId={setEditRowId} jobListingsRecords={jobListings} onDelete={handleDeleteJob} />
       {showEditJobForm &&
-        <EditJobForm sendJobData={addJob} setEditFormShow={setEditForm}></EditJobForm>
+        <EditJobForm editRowId={editRowId} sendJobData={updateJob} setEditFormShow={setEditForm}></EditJobForm>
       }
       </div>
     </>
