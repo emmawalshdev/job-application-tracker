@@ -39,17 +39,23 @@ function App() {
     setJobListings(prevJobs => [...prevJobs, job]);
   }
 
-  const updateJob = (job) => {
+  const updateJob = (rowId, job) => {
     //save listings in array
-    console.log('job', job);
-    setJobListings(prevJobs => [...prevJobs, job]);
+    setJobListings(prevJobs => 
+      prevJobs.map(j => {
+        if(jobListings[rowId]) {
+          return { ...j, ...job };
+        }
+        return j;
+      })
+    )
   }
 
   const setSelectedFilters = (filters) => {
     setFilters(filters);
   }
 
-  const setEditForm = (toShow, rowId) => {
+  const setEditForm = (toShow) => {
     setShowEditForm(toShow);
   }
 
@@ -60,9 +66,8 @@ function App() {
       (filters.status.length === 0 || filters.status.includes(job.status))
     );
   });
-  
-  console.log('filters', filters);
-  console.log('filtered jobs', filteredJobs);
+
+  console.log(filteredJobs);
 
 
   return (

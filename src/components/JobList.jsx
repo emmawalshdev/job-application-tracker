@@ -27,7 +27,6 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
       <button onClick={() => {
         setEditFormShow(true); 
         setEditRowId(params.node.rowIndex);
-        console.log('params.node');
       }}>
         {params.node.rowId}
       </button>
@@ -50,7 +49,6 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
   
     return (
       <div style={{ background: 'lightyellow', padding: '4px' }}>
-        <p>hidge</p>
         {!isExpanded && (
           <div className='result-no-response'>
             <span>No response</span>

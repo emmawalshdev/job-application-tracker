@@ -6,11 +6,15 @@ const EditJobForm = ({sendJobData, setEditFormShow, editRowId}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        sendJobData(formData); // send to parent
+        sendJobData(editRowId, formData); // send to parent
+        console.log(formData);
     }
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value})
+        setFormData({ ...formData, 
+            [e.target.name]: e.target.value,
+        
+        });
     }
     return (
         <div>
