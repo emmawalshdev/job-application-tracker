@@ -16,6 +16,8 @@ const EditJobForm = ({sendJobData, setEditFormShow, editRowId, formEntryToEdit})
         
         });
     }
+
+    console.log(formEntryToEdit)
     return (
         <div>
             Edit Job {editRowId} id

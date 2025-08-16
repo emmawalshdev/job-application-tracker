@@ -29,10 +29,13 @@ function App() {
   }, [jobListings]);
 
   useEffect(() => {
-    setFormEntryToEdit({
-      company:"TEST", position: "", status: ""
-    })
-  }, [editRowId]);
+    const jobToEdit = jobListings.find(j => j[editRowId] === editRowId);
+    if (jobToEdit) {
+      setFormEntryToEdit(jobToEdit);
+    }
+  }, [editRowId, jobListings]);
+  
+
 
   const [filters, setFilters] = useState({
     company: [],
