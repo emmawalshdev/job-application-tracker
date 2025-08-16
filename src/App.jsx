@@ -35,12 +35,10 @@ function App() {
 
 
   const addJob = (job) => {
-    //save listings in array
     setJobListings(prevJobs => [...prevJobs, job]);
   }
 
   const updateJob = (rowId, job) => {
-    //save listings in array
     setJobListings(prevJobs => 
       prevJobs.map(j => {
         if(jobListings[rowId]) {
