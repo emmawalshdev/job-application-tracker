@@ -18,6 +18,7 @@ function App() {
 
   const [showEditJobForm, setShowEditForm] = useState();
   const [editRowId, setEditRowId] = useState();
+  const [formEntryToEdit, setFormEntryToEdit] = useState({ company:"", position: "", status: "" });
 
   const handleDeleteJob = (rowIndex) => {
     setJobListings(prev => prev.filter((_, index) => index !== rowIndex));
@@ -27,12 +28,17 @@ function App() {
     localStorage.setItem('jobListings', JSON.stringify(jobListings))
   }, [jobListings]);
 
+  useEffect(() => {
+    setFormEntryToEdit({
+      company:"TEST", position: "", status: ""
+    })
+  }, [editRowId]);
+
   const [filters, setFilters] = useState({
     company: [],
     position: [],
     status: []
   });
-
 
   const addJob = (job) => {
     setJobListings(prevJobs => [...prevJobs, job]);
@@ -46,7 +52,7 @@ function App() {
         }
         return j;
       })
-    )
+    );
   }
 
   const setSelectedFilters = (filters) => {
@@ -76,7 +82,7 @@ function App() {
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
       <JobList setEditFormShow={setEditForm} setEditRowId={setEditRowId} jobListingsRecords={jobListings} onDelete={handleDeleteJob} />
       {showEditJobForm &&
-        <EditJobForm editRowId={editRowId} sendJobData={updateJob} setEditFormShow={setEditForm}></EditJobForm>
+        <EditJobForm formEntryToEdit={formEntryToEdit} editRowId={editRowId} sendJobData={updateJob} setEditFormShow={setEditForm} ></EditJobForm>
       }
       </div>
     </>
