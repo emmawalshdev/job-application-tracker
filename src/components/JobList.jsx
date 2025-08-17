@@ -25,7 +25,7 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
         setEditFormShow(true); 
         setEditRowId(params.node.rowIndex);
       }}>
-        {params.node.rowId}
+        E
       </button>
       <button onClick={() => onDelete(params.node.rowIndex)}>
         D
@@ -39,15 +39,15 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
     { field: "company" },
     { field: "position" },
     { field: "status" },
-    { 
-      headerName: "Actions",
-      cellRenderer: deleteCellRenderer,
+    {
+      headerName: "Result",
       maxWidth: 120,
       suppressMenu: true,
       suppressSorting: true
     },
-    {
-      headerName: "Result",
+    { 
+      headerName: "Actions",
+      cellRenderer: deleteCellRenderer,
       maxWidth: 120,
       suppressMenu: true,
       suppressSorting: true
