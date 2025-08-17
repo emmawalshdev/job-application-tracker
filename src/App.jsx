@@ -35,8 +35,6 @@ function App() {
   }, [showEditJobForm, editRowId, jobListings]);
   
   
-
-
   const [filters, setFilters] = useState({
     company: [],
     position: [],
@@ -49,12 +47,8 @@ function App() {
 
   const updateJob = (rowId, job) => {
     setJobListings(prevJobs => 
-      prevJobs.map(j => {
-        if(jobListings[rowId]) {
-          return { ...j, ...job };
-        }
-        return j;
-      })
+      prevJobs.map((j, index) => 
+      index === rowId ? {...j, ...job} : j)
     );
   }
 
