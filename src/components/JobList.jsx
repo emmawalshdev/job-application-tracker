@@ -9,9 +9,6 @@ ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }) => {
 
-  const [expandedRows, setExpandedRows] = useState({});
-  const [editJobList, setJobList] = useState(false);
-
   const listingsRowData = jobListingsRecords.map((job, index) => {
     return {
       id: index,
@@ -36,41 +33,6 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
       </>
     );
   };
-
-  const toggleExpand = (rowIndex) => {
-    setExpandedRows(prev => ({
-      ...prev,
-      [rowIndex]: !prev[rowIndex]
-    }));
-  };
-  
-  const ResultCell = ({ rowIndex }) => {
-    const isExpanded = !!expandedRows[rowIndex];
-  
-    return (
-      <div style={{ background: 'lightyellow', padding: '4px' }}>
-        {!isExpanded && (
-          <div className='result-no-response'>
-            <span>No response</span>
-            <button onClick={() => toggleExpand(rowIndex)}>
-              Update
-            </button>
-          </div>
-        )}
-  
-        {isExpanded && (
-          <div className='result-update'>
-            <button onClick={() => alert("Interview clicked")}>
-                Interview
-            </button>
-            <button onClick={() => alert("Offer clicked")}>
-                Offer
-            </button>
-          </div>
-        )}
-      </div>
-    )
-  }
   
 
   const [colDefs] = useState([
@@ -86,7 +48,6 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
     },
     {
       headerName: "Result",
-      cellRendererFramework: (params) => <ResultCell rowIndex={params.node.rowIndex} />,
       maxWidth: 120,
       suppressMenu: true,
       suppressSorting: true
