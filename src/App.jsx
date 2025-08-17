@@ -29,11 +29,11 @@ function App() {
   }, [jobListings]);
 
   useEffect(() => {
-    const jobToEdit = jobListings.find(j => j[editRowId] === editRowId);
-    if (jobToEdit) {
-      setFormEntryToEdit(jobToEdit);
+    if (editRowId !== undefined && jobListings[editRowId]) {
+      setFormEntryToEdit(jobListings[editRowId]);
     }
-  }, [editRowId, jobListings]);
+  }, [showEditJobForm, editRowId, jobListings]);
+  
   
 
 
