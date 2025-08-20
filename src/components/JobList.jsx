@@ -36,10 +36,10 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
   
 
   const [colDefs] = useState([
-    { field: "Company" },
-    { field: "Position" },
-    { field: "Status" },
-    { field: "Date Applied" },
+    { field: "company" },
+    { field: "position" },
+    { field: "status" },
+    { field: "date Applied" },
     { 
       headerName: "Actions",
       cellRenderer: deleteCellRenderer,
