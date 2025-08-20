@@ -73,7 +73,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <Header></Header>
       <AddJobForm sendJobData={addJob}/>
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
