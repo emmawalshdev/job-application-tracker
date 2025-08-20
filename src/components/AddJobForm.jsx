@@ -16,8 +16,8 @@ const AddJobForm = ({sendJobData}) => {
         <div>
             Add Job Application
             <form onSubmit={handleSubmit}>
-                <input type="text" name="company" value={formData.company} placeholder="Company" onChange={handleChange}/>
-                <input type="text" name="position" value={formData.position} placeholder="Position" onChange={handleChange}/>
+                <input type="text" name="company" required value={formData.company} placeholder="Company" onChange={handleChange}/>
+                <input type="text" name="position" required value={formData.position} placeholder="Position" onChange={handleChange}/>
                 <input type="date" name="date" value={formData.date} onChange={handleChange}/>
                 <select name="status" id="job-status-select" value={formData.status} onChange={handleChange}>
                     <option value="">--Status--</option>
