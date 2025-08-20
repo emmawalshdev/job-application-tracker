@@ -13,6 +13,7 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
     return {
       id: index,
       company: job.company,
+      date: job.date,
       position: job.position,
       status: job.status
     }
@@ -39,7 +40,7 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
     { field: "company" },
     { field: "position" },
     { field: "status" },
-    { field: "date Applied" },
+    { field: "date" },
     { 
       headerName: "Actions",
       cellRenderer: deleteCellRenderer,

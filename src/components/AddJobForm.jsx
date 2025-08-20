@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 const AddJobForm = ({sendJobData}) => {
 
-    const [formData, setFormData] = useState({ company:"", position: "", status: ""});
+    const [formData, setFormData] = useState({ company:"", position: "", date: "", status: ""});
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,7 +18,7 @@ const AddJobForm = ({sendJobData}) => {
             <form onSubmit={handleSubmit}>
                 <input type="text" name="company" value={formData.company} placeholder="Company" onChange={handleChange}/>
                 <input type="text" name="position" value={formData.position} placeholder="Position" onChange={handleChange}/>
-                <input type="date" value="2025-12-12" onChange={handleChange}/>
+                <input type="date" name="date" value={formData.date} onChange={handleChange}/>
                 <select name="status" id="job-status-select" value={formData.status} onChange={handleChange}>
                     <option value="">--Status--</option>
                     <option value="interview scheduled">Interview scheduled</option>

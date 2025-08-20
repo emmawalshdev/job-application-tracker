@@ -68,7 +68,7 @@ function App() {
     );
   });
 
-  console.log(filteredJobs);
+  console.log('filtered jobs:', filteredJobs);
 
 
   return (
@@ -77,7 +77,7 @@ function App() {
       <Header></Header>
       <AddJobForm sendJobData={addJob}/>
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
-      <JobList setEditFormShow={setEditForm} setEditRowId={setEditRowId} jobListingsRecords={jobListings} onDelete={handleDeleteJob} />
+      <JobList setEditFormShow={setEditForm} setEditRowId={setEditRowId} jobListingsRecords={filteredJobs} onDelete={handleDeleteJob} />
       {showEditJobForm &&
         <EditJobForm formEntryToEdit={formEntryToEdit} editRowId={editRowId} sendJobData={updateJob} setEditFormShow={setEditForm} ></EditJobForm>
       }
