@@ -5,7 +5,7 @@ import './App.css'
 import JobList from './components/JobList'
 import AddJobForm from './components/AddJobForm'
 import FilterBar from './components/FilterBar'
-import Header from './components/Header'
+import PageHeader from './components/Header'
 import EditJobForm from './components/EditJobForm'
 
 function App() {
@@ -73,8 +73,8 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <Header></Header>
+      <div className="">
+      <PageHeader></PageHeader>
       <AddJobForm sendJobData={addJob}/>
       <FilterBar setFilters={setSelectedFilters} jobListingsRecords={filteredJobs} filters={filters}/>
       <JobList setEditFormShow={setEditForm} setEditRowId={setEditRowId} jobListingsRecords={filteredJobs} onDelete={handleDeleteJob} />
