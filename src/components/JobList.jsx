@@ -4,6 +4,7 @@ import { ModuleRegistry } from 'ag-grid-community';
 import { ClientSideRowModelModule } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import '../assets/jobList.css'
 
 // Register the module you need
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
@@ -50,10 +51,10 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
   );
 
   const [colDefs] = useState([
-    { field: "company", headerName: "Company", flex: 1 },
-    { field: "position", headerName: "Position", flex: 1 },
-    { field: "status", headerName: "Status", flex: 1, cellRenderer: statusCellRenderer },
-    { field: "date", headerName: "Date", flex: 1 },
+    { field: "company", headerName: "Company" },
+    { field: "position", headerName: "Position" },
+    { field: "status", headerName: "Status", cellRenderer: statusCellRenderer },
+    { field: "date", headerName: "Date" },
     {
       headerName: "Actions",
       cellRenderer: actionsCellRenderer,
@@ -69,7 +70,7 @@ const JobList = ({ jobListingsRecords, onDelete, setEditFormShow, setEditRowId }
         rowData={listingsRowData}
         columnDefs={colDefs}
         animateRows={true}
-        rowHeight={50}
+        rowHeight={60}
         headerHeight={50}
       />
     </div>
