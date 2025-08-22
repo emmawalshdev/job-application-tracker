@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 const EditJobForm = ({ sendJobData, setEditFormShow, editRowId, formEntryToEdit }) => {
-  const [formData, setFormData] = useState({ company: "", position: "", status: "" });
+  const [formData, setFormData] = useState({
+     company: "",
+     position: "",
+     status: ""  
+});
 
   useEffect(() => {
     if (formEntryToEdit) {
